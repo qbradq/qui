@@ -11,12 +11,12 @@ QUI is a simple, modular, retained-mode GUI library for Go, built on top of
 - [Installation](#installation)
 - [Getting Started](#getting-started)
 - [Widgets](#widgets)
-    - [Label](#label)
-    - [Button](#button)
-    - [Container](#container)
-    - [Entry](#entry)
-    - [List](#list)
-    - [Window](#window)
+  - [Label](#label)
+  - [Button](#button)
+  - [Container](#container)
+  - [Entry](#entry)
+  - [List](#list)
+  - [Window](#window)
 - [Theming](#theming)
 
 ## Installation
@@ -35,7 +35,7 @@ package main
 
 import (
 	"github.com/qbradq/qui"
-	"github.com/qbradq/tremor/lib/q2d"
+	"github.com/qbradq/q2d"
 )
 
 func main() {
@@ -75,6 +75,7 @@ labelWithIcon.Icon = qui.IconFile // Set an icon
 ```
 
 **Expected Result:**
+
 - `label`: Renders the text "This is a label".
 - `labelWithIcon`: Renders a file icon followed by the text "Label with Icon".
 
@@ -91,6 +92,7 @@ btn := qui.NewButton("Submit", func() {
 ```
 
 **Expected Result:**
+
 - Renders a button with the text "Submit".
 - When clicked, "Form submitted" is printed to the console.
 - Visual feedback (color change) on hover and press.
@@ -116,6 +118,7 @@ hBox := qui.NewContainer(qui.LayoutHorizontal,
 ```
 
 **Expected Result:**
+
 - `vBox`: Renders "Top" label above "Bottom" label.
 - `hBox`: Renders "Left" button to the left of "Right" button.
 
@@ -138,8 +141,9 @@ ageEntry := qui.NewEntry("25", qui.EntryInteger)
 ```
 
 **Expected Result:**
+
 - `nameEntry`: Input field showing "John Doe". Allows editing text.
-- `passEntry`: Input field showing asterisks (*). Hides actual text.
+- `passEntry`: Input field showing asterisks (\*). Hides actual text.
 - `ageEntry`: Input field showing "25". Only accepts numeric input.
 
 ### List
@@ -161,6 +165,7 @@ list := qui.NewList(items, func(index int) {
 ```
 
 **Expected Result:**
+
 - Renders a list with 3 items.
 - "Item 2" displays a folder icon.
 - Clicking an item highlights it and prints its index.
@@ -183,6 +188,7 @@ win.OnClose = func() {
 ```
 
 **Expected Result:**
+
 - Renders a window frame with title "My Window".
 - Contains the "Window Content" label.
 - Can be dragged by the header.
@@ -208,5 +214,6 @@ qui.DefaultTheme = newTheme
 ```
 
 **Expected Result:**
+
 - The UI elements will use a color palette derived from the base blue color.
 - Backgrounds will be dark blue, text white, and primary accents bright blue.

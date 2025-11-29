@@ -6,7 +6,7 @@ import (
 	"image"
 	_ "image/png"
 
-	"github.com/qbradq/tremor/lib/q2d"
+	"github.com/qbradq/q2d"
 )
 
 //go:embed icons.png

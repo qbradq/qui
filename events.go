@@ -1,6 +1,6 @@
 package qui
 
-import "github.com/qbradq/tremor/lib/q2d"
+import "github.com/qbradq/q2d"
 
 type EventType int
 

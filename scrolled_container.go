@@ -1,7 +1,7 @@
 package qui
 
 import (
-	"github.com/qbradq/tremor/lib/q2d"
+	"github.com/qbradq/q2d"
 )
 
 type ScrolledContainer struct {

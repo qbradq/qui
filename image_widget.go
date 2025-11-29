@@ -3,7 +3,7 @@ package qui
 import (
 	"image"
 
-	"github.com/qbradq/tremor/lib/q2d"
+	"github.com/qbradq/q2d"
 )
 
 type ImageWidget struct {
