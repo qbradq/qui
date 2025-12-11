@@ -41,7 +41,7 @@ func (b *Button) MinSize() Size {
 		}
 	}
 
-	return Size{width + theme.Padding*4, height + theme.Padding*4}
+	return Size{width + (theme.Padding.Left+theme.Padding.Right)*2, height + (theme.Padding.Top+theme.Padding.Bottom)*2}
 }
 
 func (b *Button) Event(e Event) bool {

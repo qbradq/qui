@@ -29,14 +29,14 @@ func (m *MenuItem) MinSize() Size {
 		return Size{0, 0}
 	}
 	width := font.MeasureString(theme.Font, m.Text).Ceil()
-	width += IconSize + theme.Spacing + theme.Padding*2
+	width += IconSize + theme.Spacing + theme.Padding.Left + theme.Padding.Right
 
 	metrics := theme.Font.Metrics()
 	height := (metrics.Ascent + metrics.Descent).Ceil()
 	if IconSize > height {
 		height = IconSize
 	}
-	height += theme.Padding * 2
+	height += theme.Padding.Top + theme.Padding.Bottom
 
 	return Size{width, height}
 }
@@ -90,7 +90,7 @@ func (m *MenuItem) Draw(img *q2d.Image) {
 		y = 0
 	}
 
-	x := theme.Padding
+	x := theme.Padding.Left
 	if m.Icon != IconNone {
 		iconY := y + (contentHeight-IconSize)/2
 		DrawIcon(img, m.Icon, q2d.Point{x, iconY}, theme.TextColor)
@@ -286,7 +286,7 @@ func (m *MenuBar) MinSize() Size {
 		return Size{0, 0}
 	}
 	metrics := theme.Font.Metrics()
-	height := (metrics.Ascent + metrics.Descent).Ceil() + theme.Padding*2
+	height := (metrics.Ascent + metrics.Descent).Ceil() + theme.Padding.Top + theme.Padding.Bottom
 
 	// Width is 100% usually, but min width is sum of items
 	w := 0

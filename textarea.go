@@ -103,5 +103,5 @@ func (t *TextArea) Draw(img *q2d.Image) {
 		displayText += "|"
 	}
 
-	img.Text(q2d.Point{theme.Padding, theme.Padding}, theme.TextColor, theme.Font, true, "%s", displayText)
+	img.Text(q2d.Point{theme.Padding.Left, theme.Padding.Top}, theme.TextColor, theme.Font, true, "%s", displayText)
 }

@@ -49,10 +49,10 @@ func (s *Select) MinSize() Size {
 		}
 	}
 
-	h := lineHeight + theme.Padding*2
+	h := lineHeight + theme.Padding.Top + theme.Padding.Bottom
 	// No longer include list height in MinSize as it's an overlay
 
-	return Size{maxWidth + theme.Padding*4, h}
+	return Size{maxWidth + (theme.Padding.Left+theme.Padding.Right)*2, h}
 }
 
 func (s *Select) Event(evt Event) bool {
@@ -129,7 +129,7 @@ func (s *Select) Draw(img *q2d.Image) {
 		lineHeight = IconSize
 	}
 	lineHeight += 2
-	headerHeight := lineHeight + theme.Padding*2
+	headerHeight := lineHeight + theme.Padding.Top + theme.Padding.Bottom
 
 	// Draw Header
 	img.Fill(theme.ButtonColor)
@@ -142,7 +142,7 @@ func (s *Select) Draw(img *q2d.Image) {
 		icon = s.Items[s.SelectedIndex].Icon
 	}
 
-	x := theme.Padding
+	x := theme.Padding.Left
 	if icon != IconNone {
 		iconY := (headerHeight - IconSize) / 2
 		DrawIcon(img, icon, q2d.Point{x, iconY}, theme.TextColor)
@@ -336,7 +336,7 @@ func (l *SelectList) Draw(img *q2d.Image) {
 			img.PopSubImage()
 		}
 
-		itemX := theme.Padding
+		itemX := theme.Padding.Left
 		if item.Icon != IconNone {
 			iconY := y + (lineHeight-IconSize)/2
 			DrawIcon(img, item.Icon, q2d.Point{itemX, iconY}, theme.TextColor)

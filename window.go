@@ -61,16 +61,16 @@ func (w *Window) MinSize() Size {
 		theme := w.GetTheme()
 		if theme != nil && theme.Font != nil {
 			metrics := theme.Font.Metrics()
-			headerH := (metrics.Ascent + metrics.Descent).Ceil() + theme.Padding*2
-			if IconSize+theme.Padding*2 > headerH {
-				headerH = IconSize + theme.Padding*2
+			headerH := (metrics.Ascent + metrics.Descent).Ceil() + theme.Padding.Top + theme.Padding.Bottom
+			if IconSize+theme.Padding.Top+theme.Padding.Bottom > headerH {
+				headerH = IconSize + theme.Padding.Top + theme.Padding.Bottom
 			}
 			height += headerH
 
 			// Min width for title + close btn
-			titleW := font.MeasureString(theme.Font, w.Title).Ceil() + theme.Padding*2
+			titleW := font.MeasureString(theme.Font, w.Title).Ceil() + theme.Padding.Left + theme.Padding.Right
 			if w.Closable {
-				titleW += IconSize + theme.Padding*2 // Close btn size approx
+				titleW += IconSize + theme.Padding.Left + theme.Padding.Right // Close btn size approx
 			}
 			if titleW > width {
 				width = titleW
@@ -105,9 +105,9 @@ func (w *Window) Layout(available Size) Size {
 		theme := w.GetTheme()
 		if theme != nil && theme.Font != nil {
 			metrics := theme.Font.Metrics()
-			headerH = (metrics.Ascent + metrics.Descent).Ceil() + theme.Padding*2
-			if IconSize+theme.Padding*2 > headerH {
-				headerH = IconSize + theme.Padding*2
+			headerH = (metrics.Ascent + metrics.Descent).Ceil() + theme.Padding.Top + theme.Padding.Bottom
+			if IconSize+theme.Padding.Top+theme.Padding.Bottom > headerH {
+				headerH = IconSize + theme.Padding.Top + theme.Padding.Bottom
 			}
 		}
 
@@ -190,9 +190,9 @@ func (w *Window) Event(evt Event) bool {
 				theme := w.GetTheme()
 				if theme != nil && theme.Font != nil {
 					metrics := theme.Font.Metrics()
-					headerH = (metrics.Ascent + metrics.Descent).Ceil() + theme.Padding*2
-					if IconSize+theme.Padding*2 > headerH {
-						headerH = IconSize + theme.Padding*2
+					headerH = (metrics.Ascent + metrics.Descent).Ceil() + theme.Padding.Top + theme.Padding.Bottom
+					if IconSize+theme.Padding.Top+theme.Padding.Bottom > headerH {
+						headerH = IconSize + theme.Padding.Top + theme.Padding.Bottom
 					}
 				}
 
@@ -284,9 +284,9 @@ func (w *Window) Draw(img *q2d.Image) {
 		headerH := 0
 		if theme.Font != nil {
 			metrics := theme.Font.Metrics()
-			headerH = (metrics.Ascent + metrics.Descent).Ceil() + theme.Padding*2
-			if IconSize+theme.Padding*2 > headerH {
-				headerH = IconSize + theme.Padding*2
+			headerH = (metrics.Ascent + metrics.Descent).Ceil() + theme.Padding.Top + theme.Padding.Bottom
+			if IconSize+theme.Padding.Top+theme.Padding.Bottom > headerH {
+				headerH = IconSize + theme.Padding.Top + theme.Padding.Bottom
 			}
 		}
 
@@ -309,7 +309,7 @@ func (w *Window) Draw(img *q2d.Image) {
 		metrics := theme.Font.Metrics()
 		textHeight := (metrics.Ascent + metrics.Descent).Ceil()
 		textY := (headerH - textHeight) / 2
-		img.Text(q2d.Point{theme.Padding, textY}, theme.TextColor, theme.Font, false, "%s", w.Title)
+		img.Text(q2d.Point{theme.Padding.Left, textY}, theme.TextColor, theme.Font, false, "%s", w.Title)
 
 		img.PopSubImage()
 

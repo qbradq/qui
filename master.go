@@ -215,9 +215,9 @@ func (m *Master) drawTooltip(img *q2d.Image, text string) {
 	}
 
 	// Calculate size
-	width := font.MeasureString(m.Theme.Font, text).Ceil() + m.Theme.Padding*2
+	width := font.MeasureString(m.Theme.Font, text).Ceil() + m.Theme.Padding.Left + m.Theme.Padding.Right
 	metrics := m.Theme.Font.Metrics()
-	height := (metrics.Ascent + metrics.Descent).Ceil() + m.Theme.Padding*2
+	height := (metrics.Ascent + metrics.Descent).Ceil() + m.Theme.Padding.Top + m.Theme.Padding.Bottom
 
 	// Position: near mouse
 	x := m.MousePos.X() + 10
@@ -238,6 +238,6 @@ func (m *Master) drawTooltip(img *q2d.Image, text string) {
 	img.Border(m.Theme.BorderColor)
 
 	textY := (height - (metrics.Ascent + metrics.Descent).Ceil()) / 2
-	img.Text(q2d.Point{m.Theme.Padding, textY}, m.Theme.TextColor, m.Theme.Font, false, "%s", text)
+	img.Text(q2d.Point{m.Theme.Padding.Left, textY}, m.Theme.TextColor, m.Theme.Font, false, "%s", text)
 	img.PopSubImage()
 }

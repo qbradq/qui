@@ -37,7 +37,7 @@ func (c *Checkbox) MinSize() Size {
 		height = IconSize
 	}
 
-	return Size{width + DefaultTheme.Padding*2, height + DefaultTheme.Padding*2}
+	return Size{width + (DefaultTheme.Padding.Left + DefaultTheme.Padding.Right), height + (DefaultTheme.Padding.Top + DefaultTheme.Padding.Bottom)}
 }
 
 func (c *Checkbox) Event(e Event) bool {
@@ -127,9 +127,9 @@ func (c *Checkbox) Draw(img *q2d.Image) {
 	}
 
 	iconY := y + (contentHeight-IconSize)/2
-	DrawIcon(img, icon, q2d.Point{DefaultTheme.Padding, iconY}, DefaultTheme.TextColor)
+	DrawIcon(img, icon, q2d.Point{DefaultTheme.Padding.Left, iconY}, DefaultTheme.TextColor)
 
-	textX := DefaultTheme.Padding + IconSize + DefaultTheme.Spacing
+	textX := DefaultTheme.Padding.Left + IconSize + DefaultTheme.Spacing
 	textY := y + (contentHeight-textHeight)/2
 	img.Text(q2d.Point{textX, textY}, DefaultTheme.TextColor, DefaultTheme.Font, false, "%s", c.Label)
 }

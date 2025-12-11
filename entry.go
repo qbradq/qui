@@ -39,7 +39,7 @@ func (e *Entry) MinSize() Size {
 
 	height := inputSize.Height
 
-	return Size{width + theme.Padding*2, height + theme.Padding*2}
+	return Size{width + theme.Padding.Left + theme.Padding.Right, height + theme.Padding.Top + theme.Padding.Bottom}
 }
 
 func (e *Entry) Event(evt Event) bool {
@@ -95,10 +95,10 @@ func (e *Entry) Draw(img *q2d.Image) {
 	// e.Rect is absolute.
 
 	inputRect := q2d.Rectangle{
-		e.Rect.X() + theme.Padding,
-		e.Rect.Y() + theme.Padding,
-		e.Rect.Width() - theme.Padding*2,
-		e.Rect.Height() - theme.Padding*2,
+		e.Rect.X() + theme.Padding.Left,
+		e.Rect.Y() + theme.Padding.Top,
+		e.Rect.Width() - (theme.Padding.Left + theme.Padding.Right),
+		e.Rect.Height() - (theme.Padding.Top + theme.Padding.Bottom),
 	}
 	e.Input.Rect = inputRect
 

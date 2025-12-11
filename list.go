@@ -58,7 +58,7 @@ func (l *List) MinSize() Size {
 		h = len(l.Items)*lineHeight + 2
 	}
 
-	return Size{maxWidth + theme.Padding*2 + 10, h} // Add space for scrollbar
+	return Size{maxWidth + theme.Padding.Left + theme.Padding.Right + 10, h} // Add space for scrollbar
 }
 
 func (l *List) Event(evt Event) bool {
@@ -283,7 +283,7 @@ func (l *List) Draw(img *q2d.Image) {
 			img.PopSubImage()
 		}
 
-		x := theme.Padding
+		x := theme.Padding.Left
 		if item.Icon != IconNone {
 			iconY := y + (lineHeight-IconSize)/2
 			DrawIcon(img, item.Icon, q2d.Point{x, iconY}, theme.TextColor)

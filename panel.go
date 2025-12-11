@@ -21,10 +21,10 @@ func (p *Panel) MinSize() Size {
 		return Size{0, 0}
 	}
 	if p.Content == nil {
-		return Size{theme.Padding * 2, theme.Padding * 2}
+		return Size{theme.Padding.Left + theme.Padding.Right, theme.Padding.Top + theme.Padding.Bottom}
 	}
 	sz := p.Content.MinSize()
-	return Size{sz.Width + theme.Padding*2, sz.Height + theme.Padding*2}
+	return Size{sz.Width + theme.Padding.Left + theme.Padding.Right, sz.Height + theme.Padding.Top + theme.Padding.Bottom}
 }
 
 func (p *Panel) Layout(available Size) Size {
@@ -35,14 +35,14 @@ func (p *Panel) Layout(available Size) Size {
 
 	if p.Content != nil {
 		p.Content.SetRect(q2d.Rectangle{
-			p.Rect.X() + theme.Padding,
-			p.Rect.Y() + theme.Padding,
-			p.Rect.Width() - theme.Padding*2,
-			p.Rect.Height() - theme.Padding*2,
+			p.Rect.X() + theme.Padding.Left,
+			p.Rect.Y() + theme.Padding.Top,
+			p.Rect.Width() - (theme.Padding.Left + theme.Padding.Right),
+			p.Rect.Height() - (theme.Padding.Top + theme.Padding.Bottom),
 		})
 		p.Content.Layout(Size{
-			p.Rect.Width() - theme.Padding*2,
-			p.Rect.Height() - theme.Padding*2,
+			p.Rect.Width() - (theme.Padding.Left + theme.Padding.Right),
+			p.Rect.Height() - (theme.Padding.Top + theme.Padding.Bottom),
 		})
 	}
 	return available

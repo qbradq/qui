@@ -8,6 +8,10 @@ type Size struct {
 	Width, Height int
 }
 
+type Padding struct {
+	Top, Right, Bottom, Left int
+}
+
 type ListItem struct {
 	Text string
 	Icon Icon

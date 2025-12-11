@@ -16,7 +16,7 @@ type Theme struct {
 	Font             font.Face
 	IconSheet        *q2d.Image
 	Spacing          int
-	Padding          int
+	Padding          Padding
 }
 
 var DefaultTheme *Theme
@@ -33,7 +33,7 @@ func InitTheme(f font.Face) {
 		Font:             f,
 		IconSheet:        CreateDummyIconSheet(),
 		Spacing:          5,
-		Padding:          5,
+		Padding:          Padding{Top: 2, Right: 5, Bottom: 2, Left: 5},
 	}
 }
 
@@ -49,7 +49,7 @@ func GenerateTheme(base, text, complement q2d.Color, f font.Face) *Theme {
 		Font:             f,
 		IconSheet:        CreateDummyIconSheet(),
 		Spacing:          5,
-		Padding:          5,
+		Padding:          Padding{Top: 2, Right: 5, Bottom: 2, Left: 5},
 	}
 }
 

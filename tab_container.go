@@ -32,9 +32,9 @@ func (t *TabContainer) MinSize() Size {
 		return Size{0, 0}
 	}
 	metrics := theme.Font.Metrics()
-	headerHeight := (metrics.Ascent + metrics.Descent).Ceil() + theme.Padding*2
-	if IconSize+theme.Padding*2 > headerHeight {
-		headerHeight = IconSize + theme.Padding*2
+	headerHeight := (metrics.Ascent + metrics.Descent).Ceil() + theme.Padding.Top + theme.Padding.Bottom
+	if IconSize+theme.Padding.Top+theme.Padding.Bottom > headerHeight {
+		headerHeight = IconSize + theme.Padding.Top + theme.Padding.Bottom
 	}
 
 	maxW, maxH := 0, 0
@@ -53,7 +53,7 @@ func (t *TabContainer) MinSize() Size {
 	// Width must also accommodate tabs
 	tabsW := 0
 	for _, tab := range t.Tabs {
-		w := font.MeasureString(theme.Font, tab.Title).Ceil() + theme.Padding*2
+		w := font.MeasureString(theme.Font, tab.Title).Ceil() + theme.Padding.Left + theme.Padding.Right
 		if tab.Icon != IconNone {
 			w += IconSize + theme.Spacing
 		}
@@ -72,9 +72,9 @@ func (t *TabContainer) Layout(available Size) Size {
 		return Size{0, 0}
 	}
 	metrics := theme.Font.Metrics()
-	headerHeight := (metrics.Ascent + metrics.Descent).Ceil() + theme.Padding*2
-	if IconSize+theme.Padding*2 > headerHeight {
-		headerHeight = IconSize + theme.Padding*2
+	headerHeight := (metrics.Ascent + metrics.Descent).Ceil() + theme.Padding.Top + theme.Padding.Bottom
+	if IconSize+theme.Padding.Top+theme.Padding.Bottom > headerHeight {
+		headerHeight = IconSize + theme.Padding.Top + theme.Padding.Bottom
 	}
 
 	contentAvailable := Size{available.Width, available.Height - headerHeight}
@@ -97,9 +97,9 @@ func (t *TabContainer) Event(evt Event) bool {
 		return false
 	}
 	metrics := theme.Font.Metrics()
-	headerHeight := (metrics.Ascent + metrics.Descent).Ceil() + theme.Padding*2
-	if IconSize+theme.Padding*2 > headerHeight {
-		headerHeight = IconSize + theme.Padding*2
+	headerHeight := (metrics.Ascent + metrics.Descent).Ceil() + theme.Padding.Top + theme.Padding.Bottom
+	if IconSize+theme.Padding.Top+theme.Padding.Bottom > headerHeight {
+		headerHeight = IconSize + theme.Padding.Top + theme.Padding.Bottom
 	}
 
 	switch event := evt.(type) {
@@ -113,7 +113,7 @@ func (t *TabContainer) Event(evt Event) bool {
 					x := 0
 					relX := event.Pos.X() - t.Rect.X()
 					for i, tab := range t.Tabs {
-						w := font.MeasureString(theme.Font, tab.Title).Ceil() + theme.Padding*2
+						w := font.MeasureString(theme.Font, tab.Title).Ceil() + theme.Padding.Left + theme.Padding.Right
 						if tab.Icon != IconNone {
 							w += IconSize + theme.Spacing
 						}
@@ -172,9 +172,9 @@ func (t *TabContainer) Draw(img *q2d.Image) {
 
 	metrics := theme.Font.Metrics()
 	textHeight := (metrics.Ascent + metrics.Descent).Ceil()
-	headerHeight := textHeight + theme.Padding*2
-	if IconSize+theme.Padding*2 > headerHeight {
-		headerHeight = IconSize + theme.Padding*2
+	headerHeight := textHeight + theme.Padding.Top + theme.Padding.Bottom
+	if IconSize+theme.Padding.Top+theme.Padding.Bottom > headerHeight {
+		headerHeight = IconSize + theme.Padding.Top + theme.Padding.Bottom
 	}
 
 	// Draw Header
@@ -187,7 +187,7 @@ func (t *TabContainer) Draw(img *q2d.Image) {
 
 	x := 0
 	for i, tab := range t.Tabs {
-		w := font.MeasureString(theme.Font, tab.Title).Ceil() + theme.Padding*2
+		w := font.MeasureString(theme.Font, tab.Title).Ceil() + theme.Padding.Left + theme.Padding.Right
 		if tab.Icon != IconNone {
 			w += IconSize + theme.Spacing
 		}
@@ -203,7 +203,7 @@ func (t *TabContainer) Draw(img *q2d.Image) {
 		img.Fill(bg)
 		img.Border(theme.BorderColor)
 
-		contentX := theme.Padding
+		contentX := theme.Padding.Left
 		if tab.Icon != IconNone {
 			iconY := (headerHeight - IconSize) / 2
 			DrawIcon(img, tab.Icon, q2d.Point{contentX, iconY}, theme.TextColor)
